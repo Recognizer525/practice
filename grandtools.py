@@ -57,3 +57,33 @@ def the_sample(X,n):
         sample.append(X[inds[i]])
     sample=np.array(sample)
     return sample[~np.isnan(sample[:,1])]
+
+#Генерация совершенно случайных данных
+def MCAR(arr):
+    f = [1 for i in range(27)]
+    g = [0 for i in range(73)]
+    na = 73
+    h = f + g
+    random.shuffle(h)
+    for i in range(len(arr)):
+        if h[i] == 0:
+            arr[i, 1] = np.nan
+    return arr, na
+
+#Генерация случайных данных
+def MAR(arr):
+    na = 0
+    for i in range(len(arr)):
+        if arr[i, 0] <= 140:
+            arr[i, 1] = None
+            na += 1
+    return arr, na
+
+#Генерация неслучайных данных
+def MNAR(arr):
+    na = 0
+    for i in range(len(arr)):
+        if arr[i, 1] <= 140:
+            arr[i, 1] = None
+            na += 1
+    return arr, na
