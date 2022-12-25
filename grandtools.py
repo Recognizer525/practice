@@ -49,3 +49,11 @@ def data_maker(n=100):
             donmiss[i, 1] = np.nan
     return don, donmiss
 
+# Выборка с возвращением
+def the_sample(X,n):
+    sample=list()
+    inds=np.random.randint(0, len(X),n)
+    for i in range(len(inds)):
+        sample.append(X[inds[i]])
+    sample=np.array(sample)
+    return sample[~np.isnan(sample[:,1])]
